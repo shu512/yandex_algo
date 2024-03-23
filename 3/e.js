@@ -9,7 +9,7 @@ const set1 = new Set(arr1);
 const set2 = new Set(arr2);
 const set3 = new Set(arr3);
 
-const result = [];
+const numbers = [];
 
 for(let i = 0; i < arr1.length; i++) {
   let count = 0;
@@ -18,7 +18,7 @@ for(let i = 0; i < arr1.length; i++) {
   if (set3.has(arr1[i])) count++;
 
   if (count >= 2) {
-    result.push(arr1[i]);
+    numbers.push(arr1[i]);
     set1.delete(arr1[i]);
     set2.delete(arr1[i]);
     set3.delete(arr1[i]);
@@ -30,9 +30,11 @@ for(let i = 0; i < arr2.length; i++) {
   if (set2.has(arr2[i])) count++;
   if (set3.has(arr2[i])) count++;
 
-  if (count >= 2) result.push(arr2[i]);
+  if (count >= 2) numbers.push(arr2[i]);
 }
 
-console.log(result.sort((a, b) => a - b));
-// writeFileSync("output.txt", result.sort((a, b) => a - b).join(' '));
+const result = Array.from(new Set(numbers));
+
+// console.log(result.sort((a, b) => a - b));
+writeFileSync("output.txt", result.sort((a, b) => a - b).join(' '));
 
